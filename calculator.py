@@ -1,10 +1,27 @@
-t = [[0, 0, 0, 0, 0, 0], #Cooldowns
-     [0, 0, 0, 0, 0, 0], #Haste Amount
-     [0, 0, 0, 0, 0, 0]] #Current
+t = [[ 0,  0,  0,  0,  0,  0], #Cooldowns
+     [ 0,  0,  0,  0,  0,  0], #Haste Amount
+     [ 0,  0,  0,  0,  0,  0], #Current
+     ["", "", "", "", "", ""]] #Names
+
+print"     ___  ________   ________  ___  ___  _________    " 
+print"    |\  \|\   ___  \|\   __  \|\  \|\  \|\___   ___\  "
+print"    \ \  \ \  \\\ \  \ \  \|\  \ \  \\\\\  \|___ \  \_|  "
+print"     \ \  \ \  \\\ \  \ \   ____\ \  \\\\\  \   \ \  \   "
+print"      \ \  \ \  \\\ \  \ \  \___|\ \  \\\\\  \   \ \  \  "
+print"       \ \__\ \__\\\ \__\ \__\    \ \_______\   \ \__\ "
+print"        \|__|\|__| \|__|\|__|     \|_______|    \|__| "
+print""
+#escape characters
 
 for i in range(6):
-    t[0][i] = int(input("Sub #" + i + "'s Active Cooldown : "))
-    t[1][i] = int(input("Sub #" + i + "'s Haste Turns     : "))
+    t[3][i] = raw_input("Card #" + str(i+1) + "'s Name : ")
+    
+    
+
+
+for i in range(6):
+    t[0][i] = int(input("Card #" + str(i+1) + "'s Active Cooldown : "))
+    t[1][i] = int(input("Card #" + str(i+1) + "'s Haste Turns     : "))
 
 turnCount = 0
 skillBoosts = int(input("Total Skill Boosts               : "))
