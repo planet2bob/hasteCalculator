@@ -1,9 +1,13 @@
-t = [[7, 7, 9, 9, 10, 7], #Cooldowns
-     [1, 1, 1, 1, 0, 1], #Haste Amount
+t = [[0, 0, 0, 0, 0, 0], #Cooldowns
+     [0, 0, 0, 0, 0, 0], #Haste Amount
      [0, 0, 0, 0, 0, 0]] #Current
 
+for i in range(6):
+    t[0][i] = int(input("Sub #" + i + "'s Active Cooldown : "))
+    t[1][i] = int(input("Sub #" + i + "'s Haste Turns     : "))
+
 turnCount = 0
-skillBoosts = 10
+skillBoosts = int(input("Total Skill Boosts               : "))
 
 for i in range(len(t[0])):
     t[2][i] = t[0][i] - skillBoosts
