@@ -3,6 +3,10 @@ t = [[ 0,  0,  0,  0,  0,  0], #Cooldowns
      [ 0,  0,  0,  0,  0,  0], #Current
      ["", "", "", "", "", ""]] #Names
 
+shortcuts = [["chinese", "dragonbound", "dragoncaller", "single orb", "double orb"], #Names
+             [9, 10, 7, 7, 9], #Cooldowns
+             [1,  1, 1, 1, 1]] #Haste Amount
+
 print"     ___  ________   ________  ___  ___  _________    " 
 print"    |\  \|\   ___  \|\   __  \|\  \|\  \|\___   ___\  "
 print"    \ \  \ \  \\\ \  \ \  \|\  \ \  \\\\\  \|___ \  \_|  "
@@ -15,13 +19,11 @@ print""
 
 for i in range(6):
     t[3][i] = raw_input("Card #" + str(i+1) + "'s Name : ")
-    
-    
-
-
-for i in range(6):
-    t[0][i] = int(input("Card #" + str(i+1) + "'s Active Cooldown : "))
-    t[1][i] = int(input("Card #" + str(i+1) + "'s Haste Turns     : "))
+    if t[3][i] in shortcuts[0]:
+        t[0][i] = shortcuts[1][shortcuts[0].index(t[3][i])]
+        t[1][i] = shortcuts[2][shortcuts[0].index(t[3][i])]
+    t[0][i] = int(input(t[3][i] + "'s Active Cooldown : "))
+    t[1][i] = int(input(t[3][i] + "'s Haste Turns     : "))
 
 turnCount = 0
 skillBoosts = int(input("Total Skill Boosts               : "))
