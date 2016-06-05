@@ -7,36 +7,54 @@ shortcuts = [["chinese", "dragonbound", "dragoncaller", "single orb", "double or
              [9, 10, 7, 7, 9], #Cooldowns
              [1,  1, 1, 1, 1]] #Haste Amount
 
-print"     ___  ________   ________  ___  ___  _________    " 
-print"    |\  \|\   ___  \|\   __  \|\  \|\  \|\___   ___\  "
-print"    \ \  \ \  \\\ \  \ \  \|\  \ \  \\\\\  \|___ \  \_|  "
-print"     \ \  \ \  \\\ \  \ \   ____\ \  \\\\\  \   \ \  \   "
-print"      \ \  \ \  \\\ \  \ \  \___|\ \  \\\\\  \   \ \  \  "
-print"       \ \__\ \__\\\ \__\ \__\    \ \_______\   \ \__\ "
-print"        \|__|\|__| \|__|\|__|     \|_______|    \|__| "
+def displayInfo():
+    print""
+    print ("------ Turn " + str(turnCount) + " -----").center(78)
+    print""
+    for i in range(6):
+        if t[2][i] == 0:
+            line1 = "Slot " + str(i + 1) + " \"" + str(t[3][i]) + "\" : charged"
+        else:
+            line1 = "Slot " + str(i + 1) + " \"" + str(t[3][i]) + "\" : in " + str(t[2][i]) + " turns"
+        
+        print line1.center(78)
+    print""
+        
+
+print"        __ __         __        _____     __         __     __                "    
+print" ____  / // /__ ____ / /____   / ___/__ _/ /_____ __/ /__ _/ /____  ____  ____"
+print"/___/ / _  / _ `(_-</ __/ -_) / /__/ _ `/ / __/ // / / _ `/ __/ _ \/ __/ /___/"
+print"     /_//_/\_,_/___/\__/\__/  \___/\_,_/_/\__/\_,_/_/\_,_/\__/\___/_/         "
 print""
-#escape characters
+    
+#escape characters, 78 characters wide
+
+print "Input : ".center(78)
 
 for i in range(6):
-    t[3][i] = raw_input("Card #" + str(i+1) + "'s Name : ")
+    t[3][i] = raw_input("Card #" + str(i+1) + "'s Name / Type : ")
     if t[3][i] in shortcuts[0]:
         t[0][i] = shortcuts[1][shortcuts[0].index(t[3][i])]
         t[1][i] = shortcuts[2][shortcuts[0].index(t[3][i])]
-    t[0][i] = int(input(t[3][i] + "'s Active Cooldown : "))
-    t[1][i] = int(input(t[3][i] + "'s Haste Turns     : "))
+    else:
+        t[0][i] = int(input(t[3][i] + "'s Active Cooldown : "))
+        t[1][i] = int(input(t[3][i] + "'s Haste Turns     : "))
 
 turnCount = 0
-skillBoosts = int(input("Total Skill Boosts               : "))
+skillBoosts = int(input("Total Skill Boosts : "))
 
+#add boosts
 for i in range(len(t[0])):
     t[2][i] = t[0][i] - skillBoosts
     if (t[2][i] < 0):
         t[2][i] = 0
-print t[2]
+
+print "Simulation : ".center(78)
+
+displayInfo()
 
 while turnCount < 100:
-    turnCount += 1
-    activated = int(input("Button Pressed:"))
+    activated = int(input("Press Button (0 for Pass) :"))
     if activated != 0: #0 : pass
         activated -= 1
         t[2][activated] = t[0][activated]
@@ -50,4 +68,5 @@ while turnCount < 100:
             t[2][i] -= 1
             if (t[2][i] < 0):
                 t[2][i] = 0
-    print t[2]
+        turnCount += 1
+    displayInfo()
